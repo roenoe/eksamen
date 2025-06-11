@@ -1,0 +1,28 @@
+{
+  "name": "eksamen",
+  "version": "1.0.0",
+  "description": "eksamen",
+  "homepage": "https://github.com/roenoe/eksamen#readme",
+  "bugs": {
+    "url": "https://github.com/roenoe/eksamen/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roenoe/eksamen.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^11.10.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "path": "^0.12.7",
+    "url": "^0.11.4"
+  }
+}

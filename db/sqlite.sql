@@ -1,0 +1,43 @@
+-- SQLite version of the schema from MySQL
+
+-- Table: role
+CREATE TABLE IF NOT EXISTS role (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL
+);
+
+-- Table: user
+CREATE TABLE IF NOT EXISTS user (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  password TEXT NOT NULL,
+  roleid INTEGER NOT NULL,
+  FOREIGN KEY (roleid) REFERENCES role(id) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+-- Table: task
+CREATE TABLE IF NOT EXISTS task (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL
+);
+
+-- Table: status
+CREATE TABLE IF NOT EXISTS status (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL
+);
+
+-- Table: orders
+CREATE TABLE IF NOT EXISTS orders (
+  id INTEGER PRIMARY KEY,
+  userid INTEGER NOT NULL,
+  technicianid INTEGER,
+  taskid INTEGER NOT NULL,
+  statusid INTEGER NOT NULL,
+  text TEXT,
+  FOREIGN KEY (userid) REFERENCES user(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  FOREIGN KEY (technicianid) REFERENCES user(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  FOREIGN KEY (taskid) REFERENCES task(id) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  FOREIGN KEY (statusid) REFERENCES status(id) ON DELETE NO ACTION ON UPDATE NO ACTION
+);

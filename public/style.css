@@ -14,3 +14,141 @@ th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+/* General Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Header Bar */
+#headerBar {
+  background-color: #4CAF50;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Navigation Bar */
+#navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #333;
+  padding: 0.8rem 0;
+}
+
+#navbar a {
+  color: white;
+  padding: 14px 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* General Container Styling (for forms and content sections) */
+div {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+}
+
+/* Headings */
+h1,
+h2 {
+  color: #333;
+  text-align: center;
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  /* Ensures padding doesn't increase width */
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Paragraphs and Links */
+p {
+  margin-bottom: 10px;
+}
+
+a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Specific styling for the order form */
+#orderform p {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+/* Checkbox and its label in signup */
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+#signup label[for="TOS"] {
+  display: inline;
+  font-weight: normal;
+}
+
+#login label[for="TOS"] {
+  display: inline;
+  font-weight: normal;
+}
+
+/* Table styles (from your existing style.css) */
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}

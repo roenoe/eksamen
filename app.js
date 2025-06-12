@@ -35,22 +35,41 @@ function checkLoggedIn(req, res, next) {
 }
 
 // Function for checking whether user is <role>
-function checkRole(role, req, res, next) {
-  console.log("checkRole", role)
-  if ((req.session.role == role) || (req.session.role == role)) {
-    console.log('User is', role)
-    return next()
-  } else {
-    console.log('User is not', role)
-    return res.status(403).send('You need to be', role, 'to see this page')
-  }
-}
+function checkRoleMiddleware(role) {
+  return function(req, res, next) {
+    if (req.session.role === "admin") {
+      console.log("User is admin")
+      return next();
+    }
 
+    console.log("checkRole", role);
+
+    if (req.session && req.session.role === role) {
+      console.log('User is', role);
+      return next();
+    } else {
+      console.log('User is not', role);
+      return res.status(403).send(`You need to be ${role} to see this page`);
+    }
+  };
+}
 
 
 // Routes to check
 app.get('/', checkLoggedIn, (req, res) => {
-  res.sendFile(path.join(staticPath, '/'))
+  res.sendFile(path.join(staticPath, 'index.html'))
+})
+
+app.get('/index.html', checkLoggedIn, (req, res) => {
+  res.sendFile(path.join(staticPath, 'index.html'))
+})
+
+app.get('/technician/', checkLoggedIn, checkRoleMiddleware("technician"), (req, res) => {
+  res.sendFile(path.join(staticPath, 'technician/index.html'))
+})
+
+app.get('/technician/index.html', checkLoggedIn, checkRoleMiddleware("technician"), (req, res) => {
+  res.sendFile(path.join(staticPath, 'technician/index.html'))
 })
 
 
@@ -99,6 +118,40 @@ app.get('/logout', checkLoggedIn, (req, res) => {
   res.redirect('/')
 })
 
+// Signup function
+app.post('/signup', async (req, res) => {
+  const { username, email, password } = req.body
+
+  const hash = crypto.encryptPassword(password)
+
+  // Check if user already exists
+  if (sql.getId(email)) {
+    res.status(409).send('Username already taken')
+  }
+
+  // Generate user in sql
+  if (!sql.genUser(username, email, hash)) {
+    return res.errored
+  }
+
+  // Redirect user to login page
+  return res.redirect('/login.html')
+})
+
+// Order function
+app.post('/order', async (req, res) => {
+  const { taskSelect, beskrivelse } = req.body
+  const userid = req.session.userid
+  console.log(userid, taskSelect, beskrivelse)
+
+  // Generate order in sql
+  if (!sql.genOrder(userid, taskSelect, beskrivelse)) {
+    return res.errored
+  }
+
+  return res.redirect('/')
+})
+
 
 
 // Fetch username
@@ -107,6 +160,15 @@ app.get('/fetchUsername', checkLoggedIn, (req, res) => {
   return res.send(data)
 })
 
+app.get('/fetchTasks', checkLoggedIn, (req, res) => {
+  let data = sql.fetchTasks()
+  res.send(data)
+})
+
+app.get('/fetchOrders', checkLoggedIn, checkRoleMiddleware("technician"), (req, res) => {
+  let data = sql.fetchOrders()
+  return res.send(data)
+})
 
 
 

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <meta charset=UTF-8>
+  <meta name="viewport" content="width=device-width" , initial-scale=1.0">
+  <title>Grønn Mobil AS</title>
+</head>
+
+<body>
+
+  <h1>Sign up</h1>
+  <div id="signup">
+    <form id="signupform" action="/signup" method="POST">
+
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <br />
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" required>
+      <br />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <br />
+
+      <label for="passwordConfirm">Confirm Password:</label>
+      <input type="password" id="passwordConfirm" name="passwordConfirm" required>
+      <br />
+
+      <input type="checkbox" name="TOS" id="tos">
+      <label for="TOS"> I have read and agree to the <a href="./tos.html"> Terms of Service</a></label><br>
+      <br />
+
+      <button type="submit">Sign up</button>
+    </form>
+  </div>
+
+  <p>
+    Already have a user?
+    <a href="./login.html">Log in</a>
+  </p>
+
+</body>
+
+<script>
+  document.getElementById("signupform").addEventListener('submit', function (e) {
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('passwordConfirm').value;
+    const tos = document.getElementById("tos")
+
+    if (password !== passwordConfirm) {
+      e.preventDefault(); // Prevent form submission
+      alert('Passwords do not match!');
+      return
+    }
+    if (!tos.checked) {
+      e.preventDefault(); // Prevent form submission
+      alert('You have not agreed to the Terms of Service!');
+    }
+  });
+</script>
+
+</html>

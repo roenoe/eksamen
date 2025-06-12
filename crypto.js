@@ -7,3 +7,7 @@ export async function comparePassword(submittedPassword, password) {
     return false
   }
 }
+
+export function encryptPassword(password) {
+  return password
+}

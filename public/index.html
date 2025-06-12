@@ -14,6 +14,24 @@
 
   <h1 id="headerBar">Grønn Mobil AS, USERNAME</h1>
 
+  <h1>Bestill time hos oss</h1>
+  <div id="order">
+    <form id="orderform" action="/order" method="POST">
+
+      <p>Velg hva det gjelder</p>
+      <select id="taskSelect" type="taskSelect" name="taskSelect" required>
+        <option value="">Velg hva det gjelder</option>
+      </select>
+      <br />
+
+      <p>Beskrivelse av problemet, og eventuelt informasjon om hvilken telefon du har</p>
+      <label for="Beskrivelse"></label>
+      <input type="beskrivelse" id="beskrivelse" name="beskrivelse" placeholder="Beskrivelse">
+      <br />
+
+      <button type="submit">Bestill</button>
+    </form>
+  </div>
 
 
   <script src="/navbar.js"></script>
